@@ -14,6 +14,7 @@ origins = [
     "http://localhost:8000",
     "http://localhost:3080",
     "https://bank-rut-frontend-639a754o7-riandyhasan.vercel.app",
+    "https://bank-rut-frontend.vercel.app",
 ]
 
 app.add_middleware(
