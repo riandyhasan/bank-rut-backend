@@ -7,6 +7,9 @@ Sebenarnya ini pertama kali saya bikin backend dari awal, banyak kesulitan yang 
 2. Database: Postgresql
 3. Deployment: Heroku
 
+## DEPLOYMENT
+https://bankrut.herokuapp.com/
+
 ## DOKUMENTASI
 https://app.swaggerhub.com/apis/16520117/fast-api/0.1.0
 
