@@ -1,5 +1,7 @@
 import uvicorn
 import fastapi as _fastapi
+import sys
+sys.path.append('./')
 from routers.users import user_router
 from routers.requests import request_router
 from routers.transactions import transaction_router
