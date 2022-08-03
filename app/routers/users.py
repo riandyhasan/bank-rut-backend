@@ -47,7 +47,7 @@ async def register(user_details: _schemas.UserRegistration, db: _orm.Session = _
     return { 'token': auth['token'], 'data': auth['data'], 'message': "Berhasil register!" }
 
 # UPDATE
-@user_router.get("/verify-user/{user_id}")
+@user_router.put("/verify-user/{user_id}")
 async def verify_user(user_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db), token=_fastapi.Depends(auth_handler.auth_wrapper)):
     user = await _services.get_user_by_id(user_id=user_id, db=db)
     if user is None:

@@ -40,7 +40,7 @@ async def create_request(request_details: _schemas.BaseRequest, db: _orm.Session
     return "Berhasil membuat request!"
 
 # UPDATE
-@request_router.get("/approve-request/{request_id}", status_code=201)
+@request_router.put("/approve-request/{request_id}", status_code=201)
 async def approve_request(request_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db), token=_fastapi.Depends(auth_handler.auth_wrapper)):
     request = await _services.get_request_by_id(request_id=request_id, db=db)
     if request is None:
@@ -53,7 +53,7 @@ async def approve_request(request_id: int, db: _orm.Session = _fastapi.Depends(_
          await _services_users.minus_balance_user(balance=request.nominal, user=user, db=db)
     return "Berhasil menerima request"
 
-@request_router.get("/decline-request/{request_id}", status_code=201)
+@request_router.put("/decline-request/{request_id}", status_code=201)
 async def decline_request(request_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db), token=_fastapi.Depends(auth_handler.auth_wrapper)):
     request = await _services.get_request_by_id(request_id=request_id, db=db)
     if request is None:
