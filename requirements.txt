@@ -5,3 +5,4 @@ PyJWT==2.4.0
 SQLAlchemy==1.4.39
 uvicorn==0.18.2
 psycopg2==2.9.3
+dnspython==2.1.0
