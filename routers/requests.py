@@ -9,6 +9,10 @@ import schemas.requests as _schemas
 import services.requests as _services
 import services.users as _services_users
 import utils as _utils
+from auth import AuthHandler
+
+
+auth_handler = AuthHandler()
 
 
 request_router=_fastapi.APIRouter(
@@ -18,17 +22,17 @@ request_router=_fastapi.APIRouter(
 
 # GET
 @request_router.get("/get-all-requests", response_model=List[_schemas.Request])
-async def get_all_users(db: _orm.Session = _fastapi.Depends(_utils.get_db)):
+async def get_all_users(db: _orm.Session = _fastapi.Depends(_utils.get_db), token=_fastapi.Depends(auth_handler.auth_wrapper)):
     return await _services.get_all_requests(db=db)
 
 @request_router.get("/get-user-request/{user_id}", response_model=List[_schemas.Request])
-async def get_user_requests(user_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db)):
+async def get_user_requests(user_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db), token=_fastapi.Depends(auth_handler.auth_wrapper)):
     requests = await _services.get_user_requests(user_id=user_id, db=db)
     return requests
 
 # CREATE
 @request_router.post('/create_request', status_code=201)
-async def create_request(request_details: _schemas.BaseRequest, db: _orm.Session = _fastapi.Depends(_utils.get_db)):
+async def create_request(request_details: _schemas.BaseRequest, db: _orm.Session = _fastapi.Depends(_utils.get_db), token=_fastapi.Depends(auth_handler.auth_wrapper)):
     requests = await _services.get_all_requests(db=db)
     requested = { 'request_id': len(requests)}
     requested.update(request_details)
@@ -37,7 +41,7 @@ async def create_request(request_details: _schemas.BaseRequest, db: _orm.Session
 
 # UPDATE
 @request_router.get("/approve-request/{request_id}", status_code=201)
-async def approve_request(request_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db)):
+async def approve_request(request_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db), token=_fastapi.Depends(auth_handler.auth_wrapper)):
     request = await _services.get_request_by_id(request_id=request_id, db=db)
     if request is None:
         raise _fastapi.HTTPException(status_code=404, detail="Request tidak ada!")
@@ -50,7 +54,7 @@ async def approve_request(request_id: int, db: _orm.Session = _fastapi.Depends(_
     return "Berhasil menerima request"
 
 @request_router.get("/decline-request/{request_id}", status_code=201)
-async def decline_request(request_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db)):
+async def decline_request(request_id: int, db: _orm.Session = _fastapi.Depends(_utils.get_db), token=_fastapi.Depends(auth_handler.auth_wrapper)):
     request = await _services.get_request_by_id(request_id=request_id, db=db)
     if request is None:
         raise _fastapi.HTTPException(status_code=404, detail="Request tidak ada!")
