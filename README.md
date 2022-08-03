@@ -27,3 +27,18 @@ Untuk mempermudah pembuatan hal yang lebih besar, saya membagi-bagi komponen yan
 1. Pastikan telah menginstall semua module yang ada di requirement.txt
 2. Masuk ke directory app dengan mengetikkan 'cd app'
 3. Ketik di terminal 'uvicorn main:appp --reload'
+
+## DATABASE NOTES
+### users.status
+    0 = Not verified
+    1 = Verified
+### users.role
+    0 = Customer
+    1 = Admin
+### requests.jenis
+    0 = Penambahan
+    1 = Pengurangan
+### requests.status
+    0 = Pending
+    1 = Declined
+    2 = Accepted
