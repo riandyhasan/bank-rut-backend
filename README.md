@@ -26,4 +26,4 @@ Untuk mempermudah pembuatan hal yang lebih besar, saya membagi-bagi komponen yan
 ## CARA MENJALANKAN
 1. Pastikan telah menginstall semua module yang ada di requirement.txt
 2. Masuk ke directory app dengan mengetikkan 'cd app'
-3. Ketik di terminal 'uvicorn main:appp --reload'
+3. Ketik di terminal 'uvicorn main:app --reload'
