@@ -12,7 +12,7 @@ app = _fastapi.FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:8000",
-    "http://localhost:3080",
+    "http://localhost:3000",
     "https://bank-rut-frontend-639a754o7-riandyhasan.vercel.app",
     "https://bank-rut-frontend.vercel.app",
 ]
